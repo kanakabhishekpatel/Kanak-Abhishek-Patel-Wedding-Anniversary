@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kanak & Abhishek — Wedding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#b8748f; /* change this to switch theme color */
+      --accent-2:#e7a1b0;
+      --bg:#faf7f5;
+      --card:#ffffff;
+      --muted:#777;
+      --radius:14px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg);color:#222}
+
+    header{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;padding:68px 20px;text-align:center}
+    header h1{margin:0;font-size:40px;letter-spacing:1px}
+    header p{margin:8px 0 0;font-weight:300}
+
+    nav{background:var(--card);position:sticky;top:0;z-index:30;padding:12px 20px;display:flex;gap:12px;justify-content:center;align-items:center;box-shadow:0 6px 22px rgba(10,10,10,0.06)}
+    nav a{color:var(--accent);text-decoration:none;font-weight:600}
+
+    main{max-width:1100px;margin:34px auto;padding:0 18px}
+    .hero{background:linear-gradient(180deg,rgba(255,255,255,0.6),transparent);padding:32px;border-radius:12px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center}
+    .intro h2{color:var(--accent);margin:0 0 8px}
+    .intro p{color:var(--muted);margin:0}
+
+    /* countdown */
+    .countdown{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(10,10,10,0.05);text-align:center}
+    .countdown .time{font-size:20px;font-weight:700;color:var(--accent)}
+
+    /* sections */
+    section{margin-top:28px}
+    .card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:0 10px 30px rgba(10,10,10,0.05)}
+
+    .people{display:flex;gap:18px;align-items:center}
+    .people .photo{width:140px;height:140px;border-radius:12px;object-fit:cover;flex-shrink:0}
+    .people .text{flex:1}
+
+    /* album */
+    .album-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:12px}
+    .album-grid img{width:100%;height:160px;object-fit:cover;border-radius:10px;transition:transform .25s,box-shadow .25s}
+    .album-grid img:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(10,10,10,0.12)}
+
+    /* love story */
+    .story{line-height:1.6;color:var(--muted)}
+
+    /* contact / rsvp */
+    form{display:grid;gap:10px}
+    input,textarea,button,select{padding:12px;border-radius:10px;border:1px solid #eee;font-family:inherit}
+    button{background:var(--accent);color:#fff;border:none;cursor:pointer}
+
+    /* audio control */
+    .audio-controls{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:12px}
+
+    footer{margin:40px 0 10px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));padding:18px;border-radius:10px}
+
+    /* small screens */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      nav{overflow:auto}
+      header{padding:48px 12px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kanak ❤️ Abhishek</h1>
+    <p>Forever Begins Here — join us for the celebration</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#bride">Bride</a>
+    <a href="#groom">Groom</a>
+    <a href="#album">Album</a>
+    <a href="#story">Love Story</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <main>
+    <section id="home" class="hero card">
+      <div class="intro">
+        <h2>You're Invited</h2>
+        <p>Kanak and Abhishek invite you to celebrate their marriage. Please save the date and share your blessings.</p>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          <a href="#rsvp"><button>RSVP Now</button></a>
+          <a href="#album"><button style="background:#fff;border:1px solid #eee;color:var(--accent)">View Album</button></a>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="countdown" id="countdownCard">
+          <div style="font-size:12px;color:var(--muted)">Wedding Date</div>
+          <div style="font-size:18px;font-weight:700;margin-top:6px;color:#222" id="Date">Nov 30, 2025</div>
+          <div class="time" id="time">Loading...</div>
+          <small style="display:block;color:var(--muted);margin-top:6px;font-size:12px"> <code>WELCOME TO MY WEDDING ANNIVERSARY</code></small>
+        </div>
+
+        <!-- Audio: replace "audio/song.mp3" with your file name -->
+        <div class="card" style="margin-top:16px">
+          <div style="font-weight:700;color:var(--accent);margin-bottom:8px">Background Music</div>
+          <div style="font-size:13px;color:var(--muted)">(Click play to listen — audio file must be uploaded to the same folder)</div>
+          <div class="audio-controls">
+            <audio id="bgAudio" src="audio/song.mp3" preload="none"></audio>
+            <button id="playBtn">Play</button>
+            <button id="muteBtn">Mute</button>
+            <label style="font-size:13px;color:var(--muted);margin-left:6px"><input type="checkbox" id="autoplayToggle"> Autoplay</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bride" class="card">
+      <div class="people">
+        <img class="photo" src="images/kanak.jpg" alt="Kanak (replace with real photo)">
+        <div class="text">
+          <h3>Kanak</h3>
+          <p class="story">A gentle & loving soul — Kanak's smile lights up every room. She loves family, music and is excited to start this new chapter.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="groom" class="card">
+      <div class="people">
+        <img class="photo" src="images/abhishek.jpg" alt="Abhishek (replace with real photo)">
+        <div class="text">
+          <h3>Abhishek Patel</h3>
+          <p class="story">Kind-hearted & caring — Abhishek looks forward to a lifetime of love, laughter and partnership with Kanak.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="story" class="card">
+      <h3 style="color:var(--accent);margin-top:0">Our Love Story</h3>
+      <p class="story">They met with a little spark, shared many cups of chai, and found in each other a true companion. From small gestures to big plans, their journey grew into a promise of forever. (Edit this paragraph to write your full story.)</p>
+    </section>
+
+    <section id="album" class="card">
+      <h3 style="color:var(--accent);margin-top:0">Photo Album</h3>
+      <p style="color:var(--muted);margin:6px 0">Click any image to open full size. Replace the images inside <code>/images/</code> with your real photos.</p>
+      <div class="album-grid">
+        <a href="images/photo1.jpg" target="_blank"><img src="images/photo1.jpg" alt="photo1"></a>
+        <a href="images/photo2.jpg" target="_blank"><img src="images/photo2.jpg" alt="photo2"></a>
+        <a href="images/photo3.jpg" target="_blank"><img src="images/photo3.jpg" alt="photo3"></a>
+        <a href="images/photo4.jpg" target="_blank"><img src="images/photo4.jpg" alt="photo4"></a>
+        <a href="images/photo5.jpg" target="_blank"><img src="images/photo5.jpg" alt="photo5"></a>
+        <a href="images/photo6.jpg" target="_blank"><img src="images/photo6.jpg" alt="photo6"></a>
+      </div>
+    </section>
+
+    <section id="rsvp" class="card">
+      <h3 style="color:var(--accent);margin-top:0">RSVP</h3>
+      <p style="color:var(--muted);margin:0 0 8px">Please let us know if you will join us.</p>
+
+      <!-- Simple mailto form: substitutes backend. Change email below -->
+      <form onsubmit="sendMail(event)">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="email" id="email" placeholder="Your email" required>
+        <select id="attend">
+          <option value="yes">I will attend</option>
+          <option value="no">I cannot attend</option>
+        </select>
+        <textarea id="message" rows="3" placeholder="Message (optional)"></textarea>
+        <button type="submit">Send RSVP</button>
+      </form>
+      <small style="color:var(--muted);display:block;margin-top:8px">(This uses your email client. To collect RSVPs online use services like Formspree or Netlify Forms.)</small>
+    </section>
+
+    <section id="contact" class="card">
+      <h3 style="color:var(--accent);margin-top:0">Contact & Venue</h3>
+      <p style="color:var(--muted);margin:0 0 8px">Family Contacts: +91- 9621660104</p>
+      <p style="color:var(--muted);margin:0">Venue: WEDDING ANNIVERSARY, address — Ratana Thegipur Bhadohi</p>
+    </section>
+
+  </main>
+
+  <footer>
+    ©— Made with - VINIT PATHAK (Lucky Computer Institute) ❤️
+  </footer>
+
+  <!-- Background Music -->
+  <audio autoplay loop>
+      <source src="audio/song.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Love Story Section -->
+  <section id="love-story">
+      <h2>Our Love Story 💖</h2>
+      <p>Every moment, every smile, and every step brought Kanak and Abhishek closer to forever.</p>
+      <p>From the first meeting to a lifetime commitment — this is just the beginning of a beautiful journey.</p>
+  </section>
+
+  <!-- Family Section -->
+  <section id="family">
+      <h2>Family Blessings</h2>
+      <p>With the love and blessings of our families, we step into a new chapter of life.</p>
+  </section>
+
+  <!-- Extra Album Section -->
+  <section id="extra-album" class="album">
+      <h2>More Memories</h2>
+      <img src="images/photo7.jpg" />
+      <img src="images/photo8.jpg" />
+      <img src="images/photo9.jpg" />
+  </section>
+
+  <!-- Location -->
+  <section id="location">
+      <h2>Wedding Venue</h2>
+      <p>Location details can be added here.</p>
+      <!-- Replace the src below with your Google Maps embed code for an exact map -->
+      <div style="max-width:800px;margin:12px auto;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.08)">
+        <iframe src="https://www.google.com/maps?q=India&output=embed" width="100%" height="350" style="border:0" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+  </section>
+
+  <script>
+    /* --------- CONFIG: edit these values ---------- */
+    // Change weddingDate to your actual wedding date & time (ISO format or "YYYY-MM-DD HH:MM:SS")
+    const weddingDate = new Date('2026-02-20T10:00:00');
+    const displayDate = document.getElementById('wDate');
+    if(displayDate) displayDate.textContent = weddingDate.toLocaleString(undefined, {year: 'numeric', month: 'short', day: 'numeric'});
+
+    /* Countdown */
+    const timeEl = document.getElementById('time');
+    function updateCountdown(){
+      const now = new Date();
+      const diff = weddingDate - now;
+      if(isNaN(diff)) { if(timeEl) timeEl.textContent = 'Please set weddingDate in the code.'; return }
+      if(diff <= 0){ if(timeEl) timeEl.textContent = 'Happy Wedding Day!'; return }
+      const days = Math.floor(diff / (1000*60*60*24));
+      const hours = Math.floor((diff/(1000*60*60))%24);
+      const minutes = Math.floor((diff/(1000*60))%60);
+      const seconds = Math.floor((diff/1000)%60);
+      if(timeEl) timeEl.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    updateCountdown(); setInterval(updateCountdown,1000);
+
+    /* Audio controls (if audio element with id exists) */
+    const audio = document.getElementById('bgAudio');
+    const playBtn = document.getElementById('playBtn');
+    const muteBtn = document.getElementById('muteBtn');
+    const autoplayToggle = document.getElementById('autoplayToggle');
+    if(playBtn && audio){
+      playBtn.addEventListener('click', ()=>{
+        if(audio.paused){ audio.play(); playBtn.textContent = 'Pause' } else { audio.pause(); playBtn.textContent = 'Play' }
+      });
+    }
+    if(muteBtn && audio){
+      muteBtn.addEventListener('click', ()=>{
+        audio.muted = !audio.muted; muteBtn.textContent = audio.muted ? 'Unmute' : 'Mute';
+      });
+    }
+    if(autoplayToggle && audio){
+      autoplayToggle.addEventListener('change', ()=>{
+        audio.autoplay = autoplayToggle.checked;
+        if(autoplayToggle.checked) { audio.play().catch(()=>{}); if(playBtn) playBtn.textContent='Pause' }
+      });
+    }
+
+    /* Simple mailto RSVP (opens user's email client) */
+    function sendMail(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const attend = document.getElementById('attend').value;
+      const message = document.getElementById('message').value;
+      const subject = encodeURIComponent('RSVP: ' + name + ' — ' + (attend==='yes'?'Attending':'Not Attending'));
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nWill attend: ${attend}\nMessage: ${message}`);
+      // Replace the email address below with yours
+      window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+    }
+  </script>
+
+</body>
+</html>
